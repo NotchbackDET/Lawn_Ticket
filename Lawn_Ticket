@@ -1,0 +1,37 @@
+import random
+
+Big_Tickets = dict(
+    #lists of Big_Tickets
+    Push_Mower = ['S.P._Mower', 'Push_Mower', 'Walk_Behind'],
+    Rider = ['Rear_Engine_Rider', 'Tractor', 'ZTR'],
+    #2Cycle= ['Trimmer', 'Chain_Saw', 'Blower'],
+    )
+Meats =  dict(
+    Blades = ['Straight', 'Mulching'],
+    Chains = ['short', 'long'],
+    )
+
+All_food = {
+    1: Meats,
+    0: Big_Tickets,
+    }
+
+def display_list(choice): # choice can be 0: Big_Tickets or 1: Meats
+    selection = []
+    for i in range(2): # gives 2 random choices from each category
+      for options in All_food[choice].values():
+        selection.append(random.choice(options))
+    print (' '.join(selection))
+
+def interact():
+    response = input('Do you want a list of Meats or Big Tickets, or Quit? ').lower()
+    while 'q' not in response and response != '':
+        while True:
+            display_list('meat' in response)
+            if 'y' not in input('Again? ').lower():
+                break
+        response = input('Do you want a list of Meats or Healthy food, or Quit? ').lower()
+
+if __name__ == "__main__":
+    interact()
+
